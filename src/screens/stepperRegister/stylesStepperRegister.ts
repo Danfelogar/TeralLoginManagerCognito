@@ -131,5 +131,38 @@ export default function stylesStepperRegister(props: IStylesStepperRegister) {
       fontFamily: 'Teko-Medium',
     },
     //STEP 2
+    contentInput: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      maxHeight: heightFullScreen * 0.5,
+      marginBottom: 22,
+    },
+    contentDivider: {
+      width: '100%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginVertical: 10,
+    },
+    textDivider: {
+      color: colors.grayLight3,
+      textAlign: 'center',
+      fontFamily: 'Teko-Light',
+      fontSize: 24,
+    },
+    dividerBar: {
+      flex: 1,
+      borderWidth: 1,
+      borderColor: colors.grayLight1,
+      borderStyle: 'solid',
+      marginHorizontal: 10,
+    },
+    textSocialMedia: {
+      color: colors.purpleDark,
+      textAlign: 'center',
+      fontFamily: 'Teko-Medium',
+      fontSize: 20,
+      marginLeft: 10,
+    },
   });
 }

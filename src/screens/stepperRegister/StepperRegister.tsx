@@ -14,6 +14,8 @@ import stylesStepperRegister from './stylesStepperRegister';
 import {StatusBar} from 'react-native';
 import useStepperRegister from './useStepperRegister';
 import {Button, InputPhone} from '../../components';
+import {FormProvider} from 'react-hook-form';
+import {StepperForm} from './components';
 
 export default function StepperRegister() {
   //global context
@@ -43,11 +45,16 @@ export default function StepperRegister() {
     stepperState,
     arrSteps,
     isLoading,
+    isPasswordSecret,
+    isPasswordSecret2,
     //methods
     formMethods,
     //functions
     changeStepper,
     getGoBack,
+    changePasswordSecret2,
+    changePasswordSecret,
+    handleSubmitRegister,
   } = useStepperRegister();
   return (
     <View style={containerStepperRegister}>
@@ -105,6 +112,20 @@ export default function StepperRegister() {
                   activeOpacity={0.9}
                   textContent={<Text style={textBtn}>CONTINUAR</Text>}
                 />
+              </View>
+            )}
+            {stepperState === 2 && (
+              <View style={{width: '100%'}}>
+                <FormProvider {...formMethods}>
+                  <StepperForm
+                    changePasswordSecret={changePasswordSecret}
+                    changePasswordSecret2={changePasswordSecret2}
+                    getCreateAccount={handleSubmitRegister}
+                    isLoading={isLoading}
+                    isPasswordSecret={isPasswordSecret}
+                    isPasswordSecret2={isPasswordSecret2}
+                  />
+                </FormProvider>
               </View>
             )}
           </View>
