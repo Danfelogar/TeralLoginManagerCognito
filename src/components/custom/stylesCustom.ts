@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {IStylesCustom} from './types';
+import {heightFullScreen} from '../../utils';
 
 //input generic
 export function inputGenericStyles(props: IStylesCustom) {
@@ -36,6 +37,76 @@ export function inputGenericStyles(props: IStylesCustom) {
       paddingLeft: 10,
       // fontWeight: '400',
       color: '#ff4d4f',
+    },
+    //inputOTP
+    cellContent: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 65,
+      height: 75,
+      overflow: 'hidden',
+      backgroundColor: colors.grayLight,
+      borderRadius: 13,
+      borderWidth: 1,
+      borderColor: colors.grayLight3,
+      borderStyle: 'solid',
+    },
+    focusCell: {
+      borderColor: colors.purple,
+    },
+    textCell: {
+      fontSize: 34,
+      fontFamily: 'Teko-Regular',
+      color: colors.grayDark1,
+    },
+    //phoneInput
+    wrapperPhoneInput: {
+      flexDirection: 'row',
+      width: '100%',
+    },
+    flagContent: {
+      flexDirection: 'row',
+      padding: 8,
+      marginRight: 6,
+      borderRadius: 15,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.grayLight2,
+      borderColor: colors.grayLight5,
+      borderWidth: 1,
+      borderStyle: 'solid',
+    },
+    phoneContent: {
+      flexGrow: 1,
+      flexDirection: 'row',
+      paddingHorizontal: 16,
+      borderRadius: 15,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.grayLight2,
+      borderColor: colors.grayLight5,
+      borderWidth: 1,
+      borderStyle: 'solid',
+    },
+    phoneCallingCountryCode: {
+      paddingRight: 12,
+      marginRight: 12,
+      height: heightFullScreen * 0.053,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderColor: colors.grayLight5,
+      borderRightWidth: 2,
+      borderStyle: 'solid',
+    },
+    textPhoneInput: {
+      fontSize: 24.5,
+      fontFamily: 'Teko-Medium',
+      color: colors.grayDark1,
+    },
+    phoneInputContent: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   });
 }

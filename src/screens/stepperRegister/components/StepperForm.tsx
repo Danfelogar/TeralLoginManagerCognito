@@ -1,10 +1,9 @@
-import {View, Text, Platform} from 'react-native';
+import {View, Text, Platform, TouchableOpacity} from 'react-native';
 import React, {useContext} from 'react';
 import {IRegister} from '../../../model';
 import stylesStepperRegister from '../stylesStepperRegister';
 import {useFormContext} from 'react-hook-form';
 import {ThemeContext} from '../../../context';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, InputGeneric} from '../../../components';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import {heightFullScreen} from '../../../utils';
@@ -18,6 +17,10 @@ interface Props {
   changePasswordSecret: () => void;
   isPasswordSecret2: boolean;
   changePasswordSecret2: () => void;
+  checkTerms: boolean;
+  changeCheckTerms: () => void;
+  checkTerms2: boolean;
+  changeCheckTerms2: () => void;
   isLoading: boolean;
 }
 
@@ -28,6 +31,10 @@ export default function StepperForm({
   isPasswordSecret2,
   changePasswordSecret2,
   isLoading,
+  checkTerms,
+  changeCheckTerms,
+  checkTerms2,
+  changeCheckTerms2,
 }: Props) {
   //global context
   const {
@@ -45,13 +52,11 @@ export default function StepperForm({
     textDivider,
     dividerBar,
     textSocialMedia,
+    contentCheckBox,
+    termsAndConditionText,
   } = stylesStepperRegister({colors});
   return (
-    <KeyboardAwareScrollView
-      enableOnAndroid={true}
-      extraScrollHeight={Platform.OS === 'android' ? 10 : -70}
-      extraHeight={Platform.OS === 'android' ? 20 : 0}
-      enableAutomaticScroll={true}>
+    <View>
       <View style={contentInput}>
         <InputGeneric
           control={control}
@@ -67,9 +72,9 @@ export default function StepperForm({
       <View style={contentInput}>
         <InputGeneric
           control={control}
-          name={'Correo'}
+          name={'email'}
           borderColor={colors.grayLight5}
-          placeholder="email"
+          placeholder="Correo"
           keyboardType="default"
           placeholderTextColor={colors.grayLight3}
           inputColor={colors.black}
@@ -104,7 +109,7 @@ export default function StepperForm({
           lastIcon={
             <IconIonicons
               onPress={changePasswordSecret2}
-              name={isPasswordSecret ? 'eye' : 'eye-off'}
+              name={isPasswordSecret2 ? 'eye' : 'eye-off'}
               size={heightFullScreen / 34}
               color={colors.grayLight3}
             />
@@ -121,7 +126,6 @@ export default function StepperForm({
         <Text style={textDivider}>ó ingresa con</Text>
         <View style={dividerBar} />
       </View>
-
       <Button
         buttonStyle={{
           ...btnAction,
@@ -164,13 +168,43 @@ export default function StepperForm({
           </Text>
         }
       />
+      <View style={{flexDirection: 'row', width: '100%', marginTop: 40}}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={changeCheckTerms}
+          style={contentCheckBox}>
+          {checkTerms && (
+            <FontAwesome name="check" color={colors.purpleLight} size={24} />
+          )}
+        </TouchableOpacity>
+        <View style={{flex: 1}}>
+          <Text style={termsAndConditionText}>
+            Acepto las condiciones de uso y políticas de privacidad
+          </Text>
+        </View>
+      </View>
+      <View style={{flexDirection: 'row', width: '100%', marginTop: 15}}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={changeCheckTerms2}
+          style={contentCheckBox}>
+          {checkTerms2 && (
+            <FontAwesome name="check" color={colors.purpleLight} size={24} />
+          )}
+        </TouchableOpacity>
+        <View style={{flex: 1}}>
+          <Text style={termsAndConditionText}>
+            Acepto el envío de comunicaciones comerciales
+          </Text>
+        </View>
+      </View>
       <Button
-        buttonStyle={btnAction}
+        buttonStyle={{...btnAction, marginTop: 50}}
         isLoading={isLoading}
         onPress={onSubmit(getCreateAccount)}
         activeOpacity={0.9}
         textContent={<Text style={textBtn}>CREAR</Text>}
       />
-    </KeyboardAwareScrollView>
+    </View>
   );
 }

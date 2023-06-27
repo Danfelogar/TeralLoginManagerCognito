@@ -1,87 +1,112 @@
-import {View, Text} from 'react-native';
-import React from 'react';
-// import PhoneInput from 'react-native-phone-number-input';
-// import {Colors} from 'react-native/Libraries/NewAppScreen';
+import React, {useContext, useEffect, useState} from 'react';
+import {Text, TextInput, View} from 'react-native';
+import CountryPicker from 'react-native-country-picker-modal';
+import {Country, CountryCode} from '../../model';
+import {ThemeContext} from '../../context';
+import {inputGenericStyles} from './stylesCustom';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-export default function InputPhone() {
-  //   const [value, setValue] = useState('');
-  //   const [formattedValue, setFormattedValue] = useState('');
-  //   const [valid, setValid] = useState(false);
-  //   const [showMessage, setShowMessage] = useState(false);
-  //   const phoneInput = useRef<any>(null);
-  //   useEffect(() => {
-  //     console.log({formattedValue, valid, showMessage});
-  //   }, [formattedValue, valid, showMessage]);
+interface Props {
+  placeHolder: string;
+  value: string;
+  onChange: (val: string, valCountryCode: string) => void;
+}
 
+export default function InputPhone({onChange, placeHolder, value}: Props) {
+  //global context
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+  //customStyles
+  const {
+    wrapperPhoneInput,
+    flagContent,
+    phoneContent,
+    phoneCallingCountryCode,
+    textPhoneInput,
+    phoneInputContent,
+  } = inputGenericStyles({colors});
+  const ModalCountryProps = {
+    withFilter: true,
+    excludeCountries: [],
+    withFlag: true,
+    withCurrencyButton: false,
+    withCallingCodeButton: false,
+    withCountryNameButton: false,
+    withAlphaFilter: false,
+    withCallingCode: true,
+    withCurrency: false,
+    withEmoji: true,
+    withModal: true,
+    withFlagButton: true,
+    disableNativeModal: false,
+    allowFontScaling: true,
+    preferredCountries: ['CO', 'US'],
+  };
+
+  const [countryCode, setCountryCode] = useState<CountryCode | undefined>('CO');
+  const [countryCallingCode, setCountryCallingCode] = useState('+57');
+  useEffect(() => {
+    onChange(value, countryCallingCode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryCallingCode]);
+
+  // const [country, setCountry] = useState<Country | any>({
+  //   callingCode: ['57'],
+  //   cca2: 'CO',
+  //   currency: ['COP'],
+  //   flag: 'flag-co',
+  //   name: 'Colombia',
+  //   region: 'Americas',
+  //   subregion: 'South America',
+  // });
+  const [visible, setVisible] = useState<boolean>(false);
+  const onSelect = (valCountry: Country) => {
+    setCountryCode(valCountry.cca2);
+    // setCountry(valCountry);
+    setCountryCallingCode(`+${valCountry.callingCode}`);
+  };
+  const switchVisible = () => setVisible(!visible);
   return (
-    <View>
-      {/* <PhoneInput
-        ref={phoneInput}
-        defaultValue={value}
-        defaultCode="DM"
-        layout="first"
-        onChangeText={text => {
-          setValue(text);
-        }}
-        onChangeFormattedText={text => {
-          setFormattedValue(text);
-        }}
-        withDarkTheme
-        withShadow
-        autoFocus
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          const checkValid = phoneInput.current?.isValidNumber(value);
-          setShowMessage(true);
-          setValid(checkValid ? checkValid : false);
-        }}>
-        <Text>Check</Text>
-      </TouchableOpacity> */}
-      <Text style={{color: 'black', fontSize: 20}}>AAAAA</Text>
+    <View style={wrapperPhoneInput}>
+      <View style={flagContent}>
+        <CountryPicker
+          {...{
+            ...ModalCountryProps,
+            countryCode,
+
+            onSelect,
+            modalProps: {
+              visible,
+            },
+            switchVisible: switchVisible,
+            onClose: () => setVisible(false),
+            onOpen: () => setVisible(true),
+          }}
+        />
+        <AntDesign name="caretdown" color={colors.grayLight4} size={16} />
+      </View>
+      <View style={phoneContent}>
+        <View style={phoneCallingCountryCode}>
+          <Text style={textPhoneInput}>{countryCallingCode}</Text>
+        </View>
+        <TextInput
+          style={{
+            ...textPhoneInput,
+            ...phoneInputContent,
+          }}
+          keyboardType="phone-pad"
+          placeholderTextColor={colors.grayDark1}
+          placeholder={placeHolder}
+          value={value}
+          onChange={event => {
+            onChange(event.nativeEvent.text, countryCallingCode);
+          }}
+        />
+      </View>
+      {/* {country !== null && (
+        <Text style={styles.data}>{JSON.stringify(country, null, 0)}</Text>
+      )} */}
     </View>
   );
 }
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: Colors.lighter,
-//   },
-//   wrapper: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   button: {
-//     marginTop: 20,
-//     height: 50,
-//     width: 300,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#7CDB8A',
-//     shadowColor: 'rgba(0,0,0,0.4)',
-//     shadowOffset: {
-//       width: 1,
-//       height: 5,
-//     },
-//     shadowOpacity: 0.34,
-//     shadowRadius: 6.27,
-//     elevation: 10,
-//   },
-//   buttonText: {
-//     color: 'white',
-//     fontSize: 14,
-//   },
-//   redColor: {
-//     backgroundColor: '#F57777',
-//   },
-//   message: {
-//     borderWidth: 1,
-//     borderRadius: 5,
-//     padding: 20,
-//     marginBottom: 20,
-//     justifyContent: 'center',
-//     alignItems: 'flex-start',
-//   },
-// });

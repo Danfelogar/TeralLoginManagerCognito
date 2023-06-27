@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import {IncomeOptions, Login, StepperRegister} from '../screens';
+import {IncomeOptions, Login, StepperRegister, UserList} from '../screens';
 
 const Stack = createStackNavigator<any>();
 
@@ -14,6 +14,7 @@ export default function NavigationMain() {
       <Stack.Screen name="IncomeOptions" component={IncomeOptions} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="StepperRegister" component={StepperRegister} />
+      <Stack.Screen name="UserList" component={UserList} />
     </Stack.Navigator>
   );
 }

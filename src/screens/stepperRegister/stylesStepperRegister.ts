@@ -97,6 +97,7 @@ export default function stylesStepperRegister(props: IStylesStepperRegister) {
     },
     infoPhoneText: {
       fontSize: 24,
+      paddingTop: 17,
       paddingHorizontal: Platform.OS === 'ios' ? 40 : 18,
       textAlign: 'center',
       fontFamily: 'Teko-Medium',
@@ -163,6 +164,81 @@ export default function stylesStepperRegister(props: IStylesStepperRegister) {
       fontFamily: 'Teko-Medium',
       fontSize: 20,
       marginLeft: 10,
+    },
+    contentCheckBox: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 35,
+      height: 35,
+      padding: 6,
+      borderWidth: 1,
+      borderRadius: 8,
+      backgroundColor: colors.grayLight2,
+      borderColor: colors.grayLight5,
+      borderStyle: 'solid',
+      shadowColor: colors.grayLight5,
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.36,
+      shadowRadius: 6.68,
+
+      elevation: 11,
+    },
+    termsAndConditionText: {
+      marginLeft: 10,
+      color: colors.grayDark,
+      textAlign: 'left',
+      fontFamily: 'Teko-Light',
+      fontSize: 22,
+    },
+
+    //STEP2
+    stepper2Content: {
+      marginTop: 15,
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+    },
+    congratulationText: {
+      color: colors.purple,
+      textAlign: 'center',
+      fontFamily: 'Teko-Bold',
+      fontSize: 26,
+    },
+
+    //STEP4
+    stepper4Content: {
+      marginTop: 15,
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+    },
+    questionText: {
+      marginTop: 31,
+      color: colors.grayDark1,
+      textAlign: 'center',
+      fontFamily: 'Teko-Medium',
+      fontSize: 26,
+    },
+    btnActionOutline: {
+      // width: '100%',
+      justifyContent: 'center',
+      paddingHorizontal: '17%',
+      paddingVertical: 8,
+      marginTop: 12,
+      borderRadius: 11,
+      backgroundColor: 'transparent',
+      borderWidth: 1,
+      borderColor: colors.purpleLight,
+    },
+
+    btnActionOutlineText: {
+      color: colors.grayLight4,
+      textAlign: 'center',
+      fontFamily: 'Teko-Medium',
+      fontSize: 26,
     },
   });
 }
