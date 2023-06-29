@@ -21,7 +21,7 @@ export function Button({
       {isLoading ? (
         <ActivityIndicator
           size="large"
-          color={colorSpinierLoading ? colorSpinierLoading : '#6A5691'}
+          color={colorSpinierLoading ? colorSpinierLoading : '#FFFF'}
         />
       ) : (
         <>

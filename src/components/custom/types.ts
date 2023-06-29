@@ -43,4 +43,15 @@ export interface IInputGeneric {
   control: any;
 }
 
+//snackbarCustom
+export interface ISnackbarError {
+  msmText: string;
+  isOpen: boolean;
+  bgColor: string;
+  handleChangeSnackbar: () => void;
+  styled?: StyleProp<any>;
+  // setIsSnackbarError: Dispatch<SetStateAction<boolean>>;
+  setIsSnackbarError?: any;
+}
+
 export interface IStylesCustom extends Pick<IColorsProps, 'colors'> {}

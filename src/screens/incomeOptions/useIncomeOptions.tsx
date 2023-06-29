@@ -5,10 +5,14 @@ export default function useIncomeOptions() {
   function getLogin() {
     navigation.navigate('Login');
   }
+  function getRegister() {
+    navigation.navigate('StepperRegister');
+  }
   return {
     //state
     //methods
     //functions
     getLogin,
+    getRegister,
   };
 }

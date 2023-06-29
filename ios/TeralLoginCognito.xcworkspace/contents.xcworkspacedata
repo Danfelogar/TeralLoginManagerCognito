@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:TeralLoginCognito.xcodeproj">
+      location = "group:/Volumes/Daniel7w7rSSD/TeralLoginCognito/ios/TeralLoginCognito.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TeralLoginCognito.xcodeproj">
    </FileRef>
 </Workspace>

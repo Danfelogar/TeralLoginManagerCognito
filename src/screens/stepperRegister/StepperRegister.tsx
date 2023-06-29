@@ -8,21 +8,33 @@ import {
   ScrollView,
 } from 'react-native';
 
-import {ThemeContext} from '../../context';
+import {ThemeContext, UIContext} from '../../context';
 
 import stylesStepperRegister from './stylesStepperRegister';
 import {StatusBar} from 'react-native';
 import useStepperRegister from './useStepperRegister';
-import {Button, InputOTP, InputPhone} from '../../components';
+import {Button, InputOTP, InputPhone, Snackbar} from '../../components';
 import {FormProvider} from 'react-hook-form';
 import {StepperForm} from './components';
 import {KeyboardAvoidingView} from 'react-native';
+import {withOAuth} from 'aws-amplify-react-native';
 
-export default function StepperRegister() {
+function StepperRegister(props: any) {
+  const {oAuthUser, facebookSignIn, googleSignIn, signOut} = props;
   //global context
   const {
     theme: {colors},
   } = useContext(ThemeContext);
+  const {
+    isOpenTextError,
+    changeStateTextError,
+    changeSetTextError,
+    textError,
+    isOpenTextSuccessful,
+    changeStateTextSuccessful,
+    changeSetTextSuccessful,
+    textSuccessful,
+  } = useContext(UIContext);
   //customStyles
   const {
     containerStepperRegister,
@@ -71,6 +83,7 @@ export default function StepperRegister() {
     changeCheckTerms,
     changeCheckTerms2,
     otpCodeVerification,
+    resendConfirmationCode,
     changePhoneVal,
   } = useStepperRegister();
   return (
@@ -158,6 +171,8 @@ export default function StepperRegister() {
                         changeCheckTerms2={changeCheckTerms2}
                         checkTerms={checkTerms}
                         checkTerms2={checkTerms2}
+                        facebookSignIn={facebookSignIn}
+                        googleSignIn={googleSignIn}
                       />
                     </FormProvider>
                   </View>
@@ -197,13 +212,18 @@ export default function StepperRegister() {
                       source={require('../../assets/stepperes/phoneText.png')}
                       style={{resizeMode: 'cover', marginBottom: 26}}
                     />
-                    <InputOTP setValue={setOtpVal} value={otpVal} />
+                    <InputOTP
+                      setValue={setOtpVal}
+                      value={otpVal}
+                      cellCount={6}
+                    />
                     <Text style={questionText}>¿No recibió el código?</Text>
                     <Button
                       buttonStyle={btnActionOutline}
                       isLoading={isLoading}
-                      onPress={() => {}}
+                      onPress={resendConfirmationCode}
                       activeOpacity={0.9}
+                      colorSpinierLoading={colors.purpleLight}
                       textContent={
                         <Text style={btnActionOutlineText}>REENVIAR</Text>
                       }
@@ -229,7 +249,37 @@ export default function StepperRegister() {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+        {isOpenTextError && textError && (
+          <Snackbar
+            bgColor={colors.red}
+            styled={{
+              bottom: 0,
+            }}
+            isOpen={isOpenTextError}
+            msmText={textError}
+            handleChangeSnackbar={() => {
+              changeStateTextError();
+              changeSetTextError(null);
+            }}
+          />
+        )}
+        {isOpenTextSuccessful && textSuccessful && (
+          <Snackbar
+            bgColor="#55a630"
+            styled={{
+              bottom: 0,
+            }}
+            isOpen={isOpenTextSuccessful}
+            msmText={textSuccessful}
+            handleChangeSnackbar={() => {
+              changeStateTextSuccessful();
+              changeSetTextSuccessful(null);
+            }}
+          />
+        )}
       </SafeAreaView>
     </View>
   );
 }
+
+export default withOAuth(StepperRegister);

@@ -3,22 +3,27 @@ import * as yup from 'yup';
 export const validateRegister = yup.object().shape({
   username: yup
     .string()
-    .required('Required field.')
-    .min(2, 'Username needs at least 2 characters'),
+    .required('Campo obligatorio.')
+    .min(2, 'El nombre de usuario debe tener al menos 2 caracteres.'),
   password: yup
     .string()
-    .required(
-      'Required field, please remember to use a password with both alphanumeric characters and special characters (`*`,`#`,`$`,etc...).',
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_\W]).{8,}$/,
+      'Introduzca una contraseña válida.',
     )
-    .min(8, 'Password needs at least 8 characters'),
+    .required('Es necesario volver a introducir la contraseña.')
+    .min(8, 'La contraseña debe tener al menos 8 caracteres.'),
   password2: yup
     .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required(
-      'Required field, please remember to use a password with both alphanumeric characters and special characters (`*`,`#`,`$`,etc...).',
-    ),
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_\W]).{8,}$/,
+      'Introduzca una contraseña válida.',
+    )
+    .required('Es necesario volver a escribir la contraseña.')
+    .oneOf([yup.ref('password')], 'Su contraseña no coincide.'),
+
   email: yup
     .string()
-    .required('Required field.')
-    .email('Enter a valid email address.'),
+    .required('Campo obligatorio.')
+    .email('Introduzca una dirección de correo electrónico válida.'),
 });

@@ -42,7 +42,7 @@ export function inputGenericStyles(props: IStylesCustom) {
     cellContent: {
       justifyContent: 'center',
       alignItems: 'center',
-      width: 65,
+      width: '15%',
       height: 75,
       overflow: 'hidden',
       backgroundColor: colors.grayLight,

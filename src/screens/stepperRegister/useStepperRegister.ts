@@ -1,11 +1,21 @@
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {IRegister} from '../../model';
 import {useForm} from 'react-hook-form';
 import {validateRegister} from '../../utils';
+import {Auth, Hub} from 'aws-amplify';
+import {UIContext} from '../../context';
 
 export default function useStepperRegister() {
+  //global context
+  const {
+    changeStateTextError,
+    changeSetTextError,
+
+    changeStateTextSuccessful,
+    changeSetTextSuccessful,
+  } = useContext(UIContext);
   const navigation = useNavigation<any>();
   const [stepperState, setStepperState] = useState(1);
   const [phoneVal, setPhoneVal] = useState<string>('');
@@ -16,6 +26,7 @@ export default function useStepperRegister() {
   const [checkTerms, setCheckTerms] = useState(false);
   const [checkTerms2, setCheckTerms2] = useState(false);
   const [otpVal, setOtpVal] = useState('');
+  const [username, setUsername] = useState('');
   const arrSteps = [1, 2, 3, 4];
 
   const formMethods = useForm<IRegister>({
@@ -25,7 +36,7 @@ export default function useStepperRegister() {
   function changePhoneVal(phoneVal: string, countryCode: string) {
     setCountryCode(countryCode);
     setPhoneVal(phoneVal);
-    console.log({phoneVal, countryCode});
+    // console.log({phoneVal, countryCode});
   }
 
   function changePasswordSecret() {
@@ -67,24 +78,97 @@ export default function useStepperRegister() {
     setIsLoading(false);
   }
 
-  function handleSubmitRegister(data: IRegister) {
-    console.log({data, isLoading});
+  //Register
+  async function handleSubmitRegister(data: IRegister) {
+    // console.log({data, isLoading, phoneVal, countryCode});
+    if (!checkTerms || !checkTerms2) {
+      changeSetTextError('Acepta todos los términos y condiciones.');
+      return changeStateTextError();
+    }
     if (isLoading) {
       return;
     }
     setIsLoading(true);
-    setStepperState(3);
-    setIsLoading(false);
+    setUsername(data.username);
+    let dataAWS = {
+      username: data.username,
+      password: data.password,
+      attributes: {
+        name: data.username,
+        email: data.email,
+        phone_number: `${countryCode}${phoneVal}`,
+        // custom: {
+        //   'custom:code_country': countryCode,
+        // },
+      },
+      autoSignIn: {
+        enabled: true,
+      },
+    };
+    await Auth.signUp(dataAWS)
+      .then(() => {
+        // console.log({res}, 'x----->', res.user);
+        setStepperState(3);
+      })
+      .catch(err => {
+        console.warn({err});
+        changeSetTextError(err);
+        changeStateTextError();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
-  function otpCodeVerification() {
+  //Re-send signup
+  async function resendConfirmationCode() {
+    if (isLoading) {
+      return;
+    }
+    setIsLoading(true);
+    await Auth.resendSignUp(username)
+      .then(() => {
+        changeSetTextSuccessful('Código enviado revise su buzón de mensajes.');
+        changeStateTextSuccessful();
+      })
+      .catch(err => {
+        console.warn({err});
+        changeSetTextError(err);
+        changeStateTextError();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  //Confirm Register
+  async function otpCodeVerification() {
     if (otpVal.length < 4 || isLoading) {
       return;
     }
     setIsLoading(true);
-    console.log('hola', otpVal);
-    setIsLoading(false);
-    navigation.navigate('UserList');
+    await Auth.confirmSignUp(username, otpVal)
+      .then(() => {
+        Hub.listen('auth', ({payload}) => {
+          const {event} = payload;
+          if (event === 'autoSignIn') {
+            const user = payload.data;
+            console.log('x=====>', user);
+            // assign user
+            // navigation.navigate('UserList');
+          } else if (event === 'autoSignIn_failure') {
+            // redirect to sign in page
+          }
+        });
+      })
+      .catch(err => {
+        console.warn({err});
+        changeSetTextError(err);
+        changeStateTextError();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   return {
@@ -112,6 +196,7 @@ export default function useStepperRegister() {
     changeCheckTerms,
     changeCheckTerms2,
     otpCodeVerification,
+    resendConfirmationCode,
     changePhoneVal,
   };
 }

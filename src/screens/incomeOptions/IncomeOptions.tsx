@@ -1,6 +1,6 @@
 import {View, Text, SafeAreaView, StatusBar, Image} from 'react-native';
 import {ThemeContext} from '../../context';
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import stylesIncomeOptions from './stylesIncomeOptions';
 import {Button} from '../../components';
 import useIncomeOptions from './useIncomeOptions';
@@ -21,7 +21,7 @@ export default function IncomeOptions() {
     textBtn,
   } = stylesIncomeOptions({colors});
   //logic
-  const {getLogin} = useIncomeOptions();
+  const {getLogin, getRegister} = useIncomeOptions();
   return (
     <View style={containerIncomeOptions}>
       <SafeAreaView>
@@ -60,7 +60,7 @@ export default function IncomeOptions() {
             />
             <Button
               buttonStyle={{...btnAction, backgroundColor: colors.white}}
-              onPress={() => {}}
+              onPress={getRegister}
               activeOpacity={0.9}
               textContent={
                 <Text

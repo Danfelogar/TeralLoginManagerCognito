@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-terallogincognito-dev-221227-authRole",
+      "UnauthRoleArn": "arn:aws:iam::243365558279:role/amplify-terallogincognito-dev-221227-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::243365558279:role/amplify-terallogincognito-dev-221227-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-terallogincognito-dev-221227-deployment",
+      "UnauthRoleName": "amplify-terallogincognito-dev-221227-unauthRole",
+      "StackName": "amplify-terallogincognito-dev-221227",
+      "StackId": "arn:aws:cloudformation:us-east-2:243365558279:stack/amplify-terallogincognito-dev-221227/9e0f2df0-1561-11ee-b3af-0a3b5bfa2093",
+      "AmplifyAppId": "dheilwuddu2tx"
+    },
+    "categories": {
+      "auth": {
+        "terallogincognito09d3a4da": {
+          "userPoolId": "us-east-2_N7SLLWbbw",
+          "userPoolName": "users_teral",
+          "webClientId": "224kolkqks2ipkjclop4fr7el",
+          "nativeClientId": "224kolkqks2ipkjclop4fr7el"
+        }
+      }
+    }
+  }
+}

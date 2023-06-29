@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   StatusBar,
@@ -7,17 +7,28 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import {ThemeContext} from '../../context';
+import {ThemeContext, UIContext} from '../../context';
 import stylesLogin from './stylesLogin';
 import useLogin from './useLogin';
 import {FormProvider} from 'react-hook-form';
 import {LoginForm} from './components';
+import {Snackbar} from '../../components';
 
 export default function Login() {
   //global context
   const {
     theme: {colors},
   } = useContext(ThemeContext);
+  const {
+    isOpenTextError,
+    changeStateTextError,
+    changeSetTextError,
+    textError,
+    isOpenTextSuccessful,
+    changeStateTextSuccessful,
+    changeSetTextSuccessful,
+    textSuccessful,
+  } = useContext(UIContext);
   //customStyles
   const {
     containerLogin,
@@ -75,6 +86,34 @@ export default function Login() {
             </View>
           </ScrollView>
         </View>
+        {isOpenTextError && textError && (
+          <Snackbar
+            bgColor={colors.red}
+            styled={{
+              bottom: 0,
+            }}
+            isOpen={isOpenTextError}
+            msmText={textError}
+            handleChangeSnackbar={() => {
+              changeStateTextError();
+              changeSetTextError(null);
+            }}
+          />
+        )}
+        {isOpenTextSuccessful && textSuccessful && (
+          <Snackbar
+            bgColor="#55a630"
+            styled={{
+              bottom: 0,
+            }}
+            isOpen={isOpenTextSuccessful}
+            msmText={textSuccessful}
+            handleChangeSnackbar={() => {
+              changeStateTextSuccessful();
+              changeSetTextSuccessful(null);
+            }}
+          />
+        )}
       </SafeAreaView>
     </View>
   );

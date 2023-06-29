@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "terallogincognito09d3a4da": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_terallogincognito09d3a4da_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito09d3a4da"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito09d3a4da_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito09d3a4da"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito09d3a4da_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito09d3a4da"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito09d3a4da_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito09d3a4da"
+        }
+      ]
+    }
+  }
+}

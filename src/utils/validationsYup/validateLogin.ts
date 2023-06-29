@@ -1,9 +1,9 @@
 import * as yup from 'yup';
 
 export const validateLogin = yup.object().shape({
-  email: yup
+  username: yup
     .string()
-    .required('Required field.')
-    .email('Enter a valid email address.'),
-  password: yup.string().required('Required field.'),
+    .required('Campo obligatorio.')
+    .min(2, 'El nombre de usuario debe tener al menos 2 caracteres.'),
+  password: yup.string().required('Campo obligatorio.'),
 });

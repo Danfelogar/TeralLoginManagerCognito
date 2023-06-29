@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import {View, Platform, Text} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ThemeContext} from '../../../context';
@@ -45,9 +45,9 @@ export default function LoginForm({
       <View style={contentInput}>
         <InputGeneric
           control={control}
-          name={'email'}
+          name={'username'}
           borderColor={colors.grayLight5}
-          placeholder="Nickname o email"
+          placeholder="Usuario"
           keyboardType="default"
           placeholderTextColor={colors.grayLight3}
           inputColor={colors.black}
@@ -78,7 +78,7 @@ export default function LoginForm({
         ¿Olvidaste tu contraseña?
       </Text>
       <Text style={{...textRegister, color: colors.grayDark}}>
-        Aun no tienes cuenta,{' '}
+        Aun no tienes cuenta,
         <Text
           onPress={getStepperRegister}
           style={{
