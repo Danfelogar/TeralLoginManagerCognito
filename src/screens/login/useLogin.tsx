@@ -6,10 +6,12 @@ import {ICredentialsLogin} from '../../model';
 import {validateLogin} from '../../utils';
 import {Auth} from 'aws-amplify';
 import {useContext} from 'react';
-import {UIContext} from '../../context';
+import {AuthContext, UIContext} from '../../context';
 
 export default function useLogin() {
+  //global context
   const {changeStateTextError, changeSetTextError} = useContext(UIContext);
+  const {login, loginFail} = useContext(AuthContext);
   const navigation = useNavigation<any>();
   const [isPasswordSecret, setIsPasswordSecret] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,12 +31,14 @@ export default function useLogin() {
     setIsLoading(true);
     await Auth.signIn(data.username, data.password)
       .then(() => {
+        login();
         navigation.navigate('UserList');
       })
       .catch(err => {
         console.warn({err});
-        changeSetTextError(err);
+        changeSetTextError(JSON.stringify(err));
         changeStateTextError();
+        loginFail();
       })
       .finally(() => {
         setIsLoading(false);

@@ -11,7 +11,7 @@ export const validateRegister = yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_\W]).{8,}$/,
       'Introduzca una contraseña válida.',
     )
-    .required('Es necesario volver a introducir la contraseña.')
+    .required('Campo obligatorio.')
     .min(8, 'La contraseña debe tener al menos 8 caracteres.'),
   password2: yup
     .string()

@@ -17,10 +17,8 @@ import {Button, InputOTP, InputPhone, Snackbar} from '../../components';
 import {FormProvider} from 'react-hook-form';
 import {StepperForm} from './components';
 import {KeyboardAvoidingView} from 'react-native';
-import {withOAuth} from 'aws-amplify-react-native';
 
-function StepperRegister(props: any) {
-  const {oAuthUser, facebookSignIn, googleSignIn, signOut} = props;
+function StepperRegister() {
   //global context
   const {
     theme: {colors},
@@ -171,8 +169,6 @@ function StepperRegister(props: any) {
                         changeCheckTerms2={changeCheckTerms2}
                         checkTerms={checkTerms}
                         checkTerms2={checkTerms2}
-                        facebookSignIn={facebookSignIn}
-                        googleSignIn={googleSignIn}
                       />
                     </FormProvider>
                   </View>
@@ -282,4 +278,4 @@ function StepperRegister(props: any) {
   );
 }
 
-export default withOAuth(StepperRegister);
+export default StepperRegister;

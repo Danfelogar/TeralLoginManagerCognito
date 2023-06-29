@@ -1,6 +1,6 @@
 {
   "auth": {
-    "terallogincognito09d3a4da": {
+    "terallogincognitofc6ffcf2": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -9,35 +9,163 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_terallogincognito09d3a4da_nativeClientId": {
+    "AMPLIFY_auth_terallogincognito243d5fad_nativeClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "terallogincognito09d3a4da"
+          "resourceName": "terallogincognito243d5fad"
         }
       ]
     },
-    "AMPLIFY_auth_terallogincognito09d3a4da_userPoolId": {
+    "AMPLIFY_auth_terallogincognito243d5fad_userPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "terallogincognito09d3a4da"
+          "resourceName": "terallogincognito243d5fad"
         }
       ]
     },
-    "AMPLIFY_auth_terallogincognito09d3a4da_userPoolName": {
+    "AMPLIFY_auth_terallogincognito243d5fad_userPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "terallogincognito09d3a4da"
+          "resourceName": "terallogincognito243d5fad"
         }
       ]
     },
-    "AMPLIFY_auth_terallogincognito09d3a4da_webClientId": {
+    "AMPLIFY_auth_terallogincognito243d5fad_webClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "terallogincognito09d3a4da"
+          "resourceName": "terallogincognito243d5fad"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito4b93528d_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito4b93528d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito4b93528d_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito4b93528d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito4b93528d_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito4b93528d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito4b93528d_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito4b93528d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito74c077bb_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito74c077bb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito74c077bb_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito74c077bb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito74c077bb_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito74c077bb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognito74c077bb_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognito74c077bb"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitoe0eec296_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitoe0eec296"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitoe0eec296_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitoe0eec296"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitoe0eec296_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitoe0eec296"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitoe0eec296_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitoe0eec296"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitofc6ffcf2_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitofc6ffcf2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitofc6ffcf2_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitofc6ffcf2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitofc6ffcf2_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitofc6ffcf2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_terallogincognitofc6ffcf2_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "terallogincognitofc6ffcf2"
         }
       ]
     }

@@ -5,7 +5,7 @@ import {IRegister} from '../../model';
 import {useForm} from 'react-hook-form';
 import {validateRegister} from '../../utils';
 import {Auth, Hub} from 'aws-amplify';
-import {UIContext} from '../../context';
+import {AuthContext, UIContext} from '../../context';
 
 export default function useStepperRegister() {
   //global context
@@ -16,6 +16,7 @@ export default function useStepperRegister() {
     changeStateTextSuccessful,
     changeSetTextSuccessful,
   } = useContext(UIContext);
+  const {login, loginFail} = useContext(AuthContext);
   const navigation = useNavigation<any>();
   const [stepperState, setStepperState] = useState(1);
   const [phoneVal, setPhoneVal] = useState<string>('');
@@ -112,7 +113,7 @@ export default function useStepperRegister() {
       })
       .catch(err => {
         console.warn({err});
-        changeSetTextError(err);
+        changeSetTextError(JSON.stringify(err));
         changeStateTextError();
       })
       .finally(() => {
@@ -133,7 +134,7 @@ export default function useStepperRegister() {
       })
       .catch(err => {
         console.warn({err});
-        changeSetTextError(err);
+        changeSetTextError(JSON.stringify(err));
         changeStateTextError();
       })
       .finally(() => {
@@ -155,6 +156,7 @@ export default function useStepperRegister() {
             const user = payload.data;
             console.log('x=====>', user);
             // assign user
+            login();
             // navigation.navigate('UserList');
           } else if (event === 'autoSignIn_failure') {
             // redirect to sign in page
@@ -163,8 +165,9 @@ export default function useStepperRegister() {
       })
       .catch(err => {
         console.warn({err});
-        changeSetTextError(err);
+        changeSetTextError(JSON.stringify(err));
         changeStateTextError();
+        loginFail();
       })
       .finally(() => {
         setIsLoading(false);

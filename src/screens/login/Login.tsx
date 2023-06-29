@@ -19,16 +19,8 @@ export default function Login() {
   const {
     theme: {colors},
   } = useContext(ThemeContext);
-  const {
-    isOpenTextError,
-    changeStateTextError,
-    changeSetTextError,
-    textError,
-    isOpenTextSuccessful,
-    changeStateTextSuccessful,
-    changeSetTextSuccessful,
-    textSuccessful,
-  } = useContext(UIContext);
+  const {isOpenTextError, changeStateTextError, changeSetTextError, textError} =
+    useContext(UIContext);
   //customStyles
   const {
     containerLogin,
@@ -97,20 +89,6 @@ export default function Login() {
             handleChangeSnackbar={() => {
               changeStateTextError();
               changeSetTextError(null);
-            }}
-          />
-        )}
-        {isOpenTextSuccessful && textSuccessful && (
-          <Snackbar
-            bgColor="#55a630"
-            styled={{
-              bottom: 0,
-            }}
-            isOpen={isOpenTextSuccessful}
-            msmText={textSuccessful}
-            handleChangeSnackbar={() => {
-              changeStateTextSuccessful();
-              changeSetTextSuccessful(null);
             }}
           />
         )}

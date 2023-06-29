@@ -13,7 +13,31 @@
     },
     "categories": {
       "auth": {
-        "terallogincognito09d3a4da": {
+        "terallogincognito74c077bb": {
+          "userPoolId": "us-east-2_N7SLLWbbw",
+          "userPoolName": "users_teral",
+          "webClientId": "224kolkqks2ipkjclop4fr7el",
+          "nativeClientId": "224kolkqks2ipkjclop4fr7el"
+        },
+        "terallogincognito4b93528d": {
+          "userPoolId": "us-east-2_N7SLLWbbw",
+          "userPoolName": "users_teral",
+          "webClientId": "224kolkqks2ipkjclop4fr7el",
+          "nativeClientId": "224kolkqks2ipkjclop4fr7el"
+        },
+        "terallogincognitoe0eec296": {
+          "userPoolId": "us-east-2_N7SLLWbbw",
+          "userPoolName": "users_teral",
+          "webClientId": "224kolkqks2ipkjclop4fr7el",
+          "nativeClientId": "224kolkqks2ipkjclop4fr7el"
+        },
+        "terallogincognito243d5fad": {
+          "userPoolId": "us-east-2_N7SLLWbbw",
+          "userPoolName": "users_teral",
+          "webClientId": "224kolkqks2ipkjclop4fr7el",
+          "nativeClientId": "224kolkqks2ipkjclop4fr7el"
+        },
+        "terallogincognitofc6ffcf2": {
           "userPoolId": "us-east-2_N7SLLWbbw",
           "userPoolName": "users_teral",
           "webClientId": "224kolkqks2ipkjclop4fr7el",

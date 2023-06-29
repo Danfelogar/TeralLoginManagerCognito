@@ -22,8 +22,6 @@ interface Props {
   checkTerms2: boolean;
   changeCheckTerms2: () => void;
   isLoading: boolean;
-  facebookSignIn: any;
-  googleSignIn: any;
 }
 
 export default function StepperForm({
@@ -37,8 +35,6 @@ export default function StepperForm({
   changeCheckTerms,
   checkTerms2,
   changeCheckTerms2,
-  facebookSignIn,
-  googleSignIn,
 }: Props) {
   //global context
   const {
@@ -142,9 +138,7 @@ export default function StepperForm({
           <FontAwesome name="google-plus" color={colors.purpleDark} size={34} />
         }
         isLoading={isLoading}
-        onPress={() => {
-          googleSignIn();
-        }}
+        onPress={() => {}}
         activeOpacity={0.9}
         textContent={
           <Text style={textSocialMedia}>Iniciar sesión con Google</Text>
@@ -162,9 +156,7 @@ export default function StepperForm({
           <Fontisto name="facebook" color={colors.purpleDark} size={34} />
         }
         isLoading={isLoading}
-        onPress={() => {
-          facebookSignIn();
-        }}
+        onPress={() => {}}
         activeOpacity={0.9}
         textContent={
           <Text
