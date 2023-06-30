@@ -1,6 +1,6 @@
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigation} from '@react-navigation/native';
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {IRegister} from '../../model';
 import {useForm} from 'react-hook-form';
 import {validateRegister} from '../../utils';
@@ -29,6 +29,27 @@ export default function useStepperRegister() {
   const [otpVal, setOtpVal] = useState('');
   const [username, setUsername] = useState('');
   const arrSteps = [1, 2, 3, 4];
+
+  useEffect(() => {
+    Hub.listen('auth', ({payload: {event, data}}) => {
+      switch (event) {
+        case 'signIn':
+          setStepperState(3);
+          break;
+        case 'signOut':
+          loginFail();
+          break;
+        case 'signIn_failure':
+          console.warn('Sign in failure', data);
+          changeSetTextError(JSON.stringify(data));
+          changeStateTextError();
+          loginFail();
+          break;
+      }
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formMethods = useForm<IRegister>({
     resolver: yupResolver(validateRegister),
@@ -77,6 +98,15 @@ export default function useStepperRegister() {
     setPhoneVal(e => e.replace(/\s+/g, ''));
     setStepperState(2);
     setIsLoading(false);
+  }
+
+  //register social media
+  function socialMediaRegister(functionMedia: () => void) {
+    if (!checkTerms || !checkTerms2) {
+      changeSetTextError('Acepta todos los términos y condiciones.');
+      return changeStateTextError();
+    }
+    functionMedia();
   }
 
   //Register
@@ -153,8 +183,6 @@ export default function useStepperRegister() {
         Hub.listen('auth', ({payload}) => {
           const {event} = payload;
           if (event === 'autoSignIn') {
-            const user = payload.data;
-            console.log('x=====>', user);
             // assign user
             login();
             // navigation.navigate('UserList');
@@ -201,5 +229,6 @@ export default function useStepperRegister() {
     otpCodeVerification,
     resendConfirmationCode,
     changePhoneVal,
+    socialMediaRegister,
   };
 }

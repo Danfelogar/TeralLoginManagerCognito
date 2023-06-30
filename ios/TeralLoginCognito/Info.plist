@@ -80,7 +80,7 @@
 		<dict>
 		<key>CFBundleURLSchemes</key>
 		<array>
-			<string>myapp</string>
+			<string>TeralLoginCognito</string>
 		</array>
 		</dict>
 	</array>

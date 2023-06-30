@@ -11,6 +11,7 @@ import {
 import {ThemeContext, UIContext} from '../../context';
 
 import stylesStepperRegister from './stylesStepperRegister';
+import {withOAuth} from 'aws-amplify-react-native';
 import {StatusBar} from 'react-native';
 import useStepperRegister from './useStepperRegister';
 import {Button, InputOTP, InputPhone, Snackbar} from '../../components';
@@ -18,7 +19,8 @@ import {FormProvider} from 'react-hook-form';
 import {StepperForm} from './components';
 import {KeyboardAvoidingView} from 'react-native';
 
-function StepperRegister() {
+function StepperRegister(props: any) {
+  const {facebookSignIn, googleSignIn} = props;
   //global context
   const {
     theme: {colors},
@@ -83,6 +85,7 @@ function StepperRegister() {
     otpCodeVerification,
     resendConfirmationCode,
     changePhoneVal,
+    socialMediaRegister,
   } = useStepperRegister();
   return (
     <View style={containerStepperRegister}>
@@ -169,6 +172,9 @@ function StepperRegister() {
                         changeCheckTerms2={changeCheckTerms2}
                         checkTerms={checkTerms}
                         checkTerms2={checkTerms2}
+                        socialMediaRegister={socialMediaRegister}
+                        googleSignIn={googleSignIn}
+                        facebookSignIn={facebookSignIn}
                       />
                     </FormProvider>
                   </View>
@@ -278,4 +284,4 @@ function StepperRegister() {
   );
 }
 
-export default StepperRegister;
+export default withOAuth(StepperRegister);

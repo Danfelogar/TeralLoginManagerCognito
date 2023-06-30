@@ -10,8 +10,7 @@ import awsmobile from './src/aws-exports';
 
 Amplify.configure(awsmobile);
 
-function App(props): JSX.Element {
-  // const {oAuthUser, facebookSignIn, googleSignIn, signOut} = props;
+function App(): JSX.Element {
   // useEffect(() => {
   //   googleSignIn();
   // }, []);

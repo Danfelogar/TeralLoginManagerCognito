@@ -1,11 +1,71 @@
 {
+  "api": {
+    "AdminQueries": {
+      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "terallogincognito5a67bd6d"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "AdminQueriesdb1f0edb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
-    "terallogincognitofc6ffcf2": {
+    "terallogincognito5a67bd6d": {
       "customAuth": false,
       "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "imported"
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "AdminQueriesdb1f0edb": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "terallogincognito5a67bd6d"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -137,35 +197,19 @@
         }
       ]
     },
-    "AMPLIFY_auth_terallogincognitofc6ffcf2_nativeClientId": {
+    "AMPLIFY_function_AdminQueriesdb1f0edb_deploymentBucketName": {
       "usedBy": [
         {
-          "category": "auth",
-          "resourceName": "terallogincognitofc6ffcf2"
+          "category": "function",
+          "resourceName": "AdminQueriesdb1f0edb"
         }
       ]
     },
-    "AMPLIFY_auth_terallogincognitofc6ffcf2_userPoolId": {
+    "AMPLIFY_function_AdminQueriesdb1f0edb_s3Key": {
       "usedBy": [
         {
-          "category": "auth",
-          "resourceName": "terallogincognitofc6ffcf2"
-        }
-      ]
-    },
-    "AMPLIFY_auth_terallogincognitofc6ffcf2_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "terallogincognitofc6ffcf2"
-        }
-      ]
-    },
-    "AMPLIFY_auth_terallogincognitofc6ffcf2_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "terallogincognitofc6ffcf2"
+          "category": "function",
+          "resourceName": "AdminQueriesdb1f0edb"
         }
       ]
     }
