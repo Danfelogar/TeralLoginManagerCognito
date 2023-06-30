@@ -62,7 +62,7 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "adminQueryGroup": "api0admin1teral2users",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"TeralLoginCognito://\"],\"LogoutURLs\":[\"TeralLoginCognito://\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"TeralLoginCognito://\"],\"LogoutURLs\":[\"TeralLoginCognito://\"]}",
+    "adminQueryGroup": "api0admin1teral2users"
   }
 }
