@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  StatusBar,
-  SafeAreaView,
-  Platform,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, StatusBar, SafeAreaView, Platform, Image} from 'react-native';
 import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import React from 'react';
@@ -16,6 +8,7 @@ import stylesUserList from './stylesUserList';
 import {Button, Snackbar} from '../../components';
 import useUserList from './useUserList';
 import {heightFullScreen} from '../../utils';
+import {UserFlatList} from './components';
 
 export default function UserList() {
   //global context
@@ -33,10 +26,12 @@ export default function UserList() {
   const {
     //state
     isLoading,
-    userInformation,
+    usersListPool,
+    // userInformation,
     //methods
     //functions
     signOut,
+    getUsers,
   } = useUserList();
   return (
     <View style={containerUserList}>
@@ -75,14 +70,13 @@ export default function UserList() {
             }
           />
         </View>
-
-        <ScrollView
-          horizontal={false}
-          // pagingEnabled
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}>
-          <Text>{userInformation}</Text>
-        </ScrollView>
+        <UserFlatList
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          isLoading={isLoading}
+          users={usersListPool}
+          onTryAgain={getUsers}
+        />
         {isOpenTextError && textError && (
           <Snackbar
             bgColor={colors.red}

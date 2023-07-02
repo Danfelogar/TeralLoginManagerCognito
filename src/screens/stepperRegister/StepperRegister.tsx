@@ -19,7 +19,7 @@ import {FormProvider} from 'react-hook-form';
 import {StepperForm} from './components';
 import {KeyboardAvoidingView} from 'react-native';
 
-function StepperRegister(props: any) {
+function StepperRegister(props: any): JSX.Element {
   const {facebookSignIn, googleSignIn} = props;
   //global context
   const {

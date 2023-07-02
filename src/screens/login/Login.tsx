@@ -14,7 +14,7 @@ import {FormProvider} from 'react-hook-form';
 import {LoginForm} from './components';
 import {Snackbar} from '../../components';
 
-export default function Login() {
+export default function Login(): JSX.Element {
   //global context
   const {
     theme: {colors},

@@ -11,7 +11,7 @@ export function Button({
   lastIcon,
   isLoading = false,
   colorSpinierLoading,
-}: IButton) {
+}: IButton): JSX.Element {
   return (
     <TouchableOpacity
       disabled={isLoading}

@@ -16,7 +16,11 @@ interface Props {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-export default function InputOTP({cellCount = 4, value, setValue}: Props) {
+export default function InputOTP({
+  cellCount = 4,
+  value,
+  setValue,
+}: Props): JSX.Element {
   //global context
   const {
     theme: {colors},

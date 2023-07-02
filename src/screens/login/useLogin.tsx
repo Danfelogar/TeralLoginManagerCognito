@@ -43,7 +43,6 @@ export default function useLogin() {
       .finally(() => {
         setIsLoading(false);
       });
-    setIsLoading(false);
   }
 
   function getStepperRegister() {

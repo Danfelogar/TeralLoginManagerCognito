@@ -21,7 +21,7 @@ export default function InputGeneric({
   name,
   control,
   onFocus,
-}: IInputGeneric) {
+}: IInputGeneric): JSX.Element {
   //global context
   const {
     theme: {colors},

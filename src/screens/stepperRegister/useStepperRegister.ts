@@ -29,12 +29,13 @@ export default function useStepperRegister() {
   const [otpVal, setOtpVal] = useState('');
   const [username, setUsername] = useState('');
   const arrSteps = [1, 2, 3, 4];
-
   useEffect(() => {
     Hub.listen('auth', ({payload: {event, data}}) => {
       switch (event) {
         case 'signIn':
-          setStepperState(3);
+          // setUsername(data.username);
+          login();
+          // console.log({event, data}, '1======>', data.username);
           break;
         case 'signOut':
           loginFail();

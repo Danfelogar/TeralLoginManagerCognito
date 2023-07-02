@@ -5,7 +5,7 @@ import stylesIncomeOptions from './stylesIncomeOptions';
 import {Button} from '../../components';
 import useIncomeOptions from './useIncomeOptions';
 
-export default function IncomeOptions() {
+export default function IncomeOptions(): JSX.Element {
   //global context
   const {
     theme: {colors},

@@ -12,7 +12,11 @@ interface Props {
   onChange: (val: string, valCountryCode: string) => void;
 }
 
-export default function InputPhone({onChange, placeHolder, value}: Props) {
+export default function InputPhone({
+  onChange,
+  placeHolder,
+  value,
+}: Props): JSX.Element {
   //global context
   const {
     theme: {colors},
